@@ -1,0 +1,71 @@
+# Question 3 : Comment l'augmentation du nombre de classes (bins) affecte-t-elle l'apparence de l'histogramme ?
+# -------------------------------------------------------------------------------------
+# En augmentant le nombre de bins, l'histogramme devient plus détaillé. Cela permet de mieux voir la distribution fine
+# des données et les petits regroupements. En revanche, si le nombre de bins est trop élevé, le graphique devient plus
+# bruité, et il est plus difficile de distinguer une tendance générale. À l'inverse, trop peu de bins lissent trop l'information.
+
+# Question 5 : Quelles sont les deux différences clés entre les histogrammes générés par .hist() de pandas
+#                  et ceux générés par sns.histplot() de seaborn ?
+# -------------------------------------------------------------------------------------
+# 1. Seaborn génère des visualisations plus esthétiques et stylisées par défaut (couleurs, grilles, épaisseurs).
+# 2. sns.histplot() permet d'ajouter facilement des éléments statistiques comme la courbe KDE,
+#    alors que pandas.hist() est plus basique et moins flexible.
+
+# Question 6 : Qu'est-ce qu'une estimation de la densité du noyau (KDE) ? Que montre-t-elle ?
+# -------------------------------------------------------------------------------------
+# La KDE (Kernel Density Estimation) est une courbe lissée qui estime la distribution de probabilité des données continues.
+# Elle remplace l'affichage discret de l'histogramme par une fonction continue, ce qui permet d’identifier les zones de densité,
+# les pics et les structures de la distribution plus facilement qu’avec de simples barres.
+
+
+
+
+
+
+import pandas as pd 
+import seaborn as sns 
+import numpy as np
+import matplotlib.pyplot as plt
+
+df = sns.load_dataset('diamonds')
+print(df.head())
+
+# Histogramme simple de carat avec pandas
+df["carat"].hist(bins=10)
+plt.title("Histogramme du poids (carat) - Pandas (10 bins)")
+plt.xlabel("Carat")
+plt.ylabel("Fréquence")
+plt.grid(False)
+plt.show()
+
+# Comparaison avec plus de bins
+df["carat"].hist(bins=30)
+plt.title("Histogramme du poids (carat) - Pandas (30 bins)")
+plt.xlabel("Carat")
+plt.ylabel("Fréquence")
+plt.grid(False)
+plt.show()
+
+# Histogramme avec Seaborn
+sns.histplot(data=df, x="carat", bins=30)
+plt.title("Histogramme du poids (carat) - Seaborn")
+plt.xlabel("Carat")
+plt.ylabel("Fréquence")
+plt.show()
+
+# Histogramme + KDE
+sns.histplot(data=df, x="carat", bins=30, kde=True)
+plt.title("Histogramme + KDE (Seaborn)")
+plt.xlabel("Carat")
+plt.ylabel("Fréquence")
+plt.show()
+
+# Application d'un log sur la variable carat
+df["log_carat"] = np.log(df["carat"])
+
+# Histogramme sur la variable transformée
+sns.histplot(data=df, x="log_carat", bins=30, kde=True)
+plt.title("Histogramme du log(carat) + KDE")
+plt.xlabel("log(Carat)")
+plt.ylabel("Fréquence")
+plt.show()
