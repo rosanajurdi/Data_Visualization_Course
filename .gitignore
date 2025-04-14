@@ -3,8 +3,14 @@ solutions/*
 ../Data_Visualization_Course/lab-sessions/.ipynb_checkpoints
 .ipynb_checkpoints/*
 <<<<<<< HEAD
+<<<<<<< HEAD
 lab-sessions/.ipynb_checkpoints/*
 lab-sessions/images/.ipynb_checkpoints/*
 =======
 test_git\Data_Visualization_Course\lab-sessions\.ipynb_checkpoints/*
 >>>>>>> dfcad0f (added gitignore file)
+=======
+test_git\Data_Visualization_Course\lab-sessions\.ipynb_checkpoints/*
+lab-sessions/.ipynb_checkpoints/*
+lab-sessions/.ipynb_checkpoints
+>>>>>>> 9eb3b75 (modified gitignore)
