@@ -1,6 +1,10 @@
 Jupyter notebooks/.ipynb_checkpoints/*
 solutions/*
-/home/rosana.eljurdi/Documents/courses/Data_Visualization_Course/lab-sessions/.ipynb_checkpoints
+../Data_Visualization_Course/lab-sessions/.ipynb_checkpoints
 .ipynb_checkpoints/*
+<<<<<<< HEAD
 lab-sessions/.ipynb_checkpoints/*
 lab-sessions/images/.ipynb_checkpoints/*
+=======
+test_git\Data_Visualization_Course\lab-sessions\.ipynb_checkpoints/*
+>>>>>>> dfcad0f (added gitignore file)
