@@ -3,4 +3,7 @@ solutions/*
 /home/rosana.eljurdi/Documents/courses/Data_Visualization_Course/lab-sessions/.ipynb_checkpoints
 .ipynb_checkpoints/*
 lab-sessions/.ipynb_checkpoints/*
+<<<<<<< HEAD
 lab-sessions/images/.ipynb_checkpoints/*
+=======
+>>>>>>> 6729e11 (lab-sessions/lab2-barplots.ipynb)
