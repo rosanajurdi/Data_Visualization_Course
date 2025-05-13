@@ -4,6 +4,7 @@ solutions/*
 .ipynb_checkpoints/*
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 lab-sessions/.ipynb_checkpoints/*
 lab-sessions/images/.ipynb_checkpoints/*
 =======
@@ -14,3 +15,8 @@ test_git\Data_Visualization_Course\lab-sessions\.ipynb_checkpoints/*
 lab-sessions/.ipynb_checkpoints/*
 lab-sessions/.ipynb_checkpoints
 >>>>>>> 9eb3b75 (modified gitignore)
+=======
+test_git\Data_Visualization_Course\lab-sessions\.ipynb_checkpoints/*
+lab-sessions/.ipynb_checkpoints/*
+lab-sessions/.ipynb_checkpoints
+>>>>>>> 351f4c9c59b624f73ef49be88ce9f8b30416cb65
