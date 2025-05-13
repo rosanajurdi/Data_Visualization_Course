@@ -10,13 +10,29 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from pathlib import Path
-#from statsmodels.graphics.tsaplots import plot_acf
 
 # Configuration du chemin de données
-DATA_PATH = Path(".")  # On suppose que le dataset est dans le même répertoire
+DATA_PATH = Path(".")
 
-# Chargement du dataset
-passenger_df = pd.read_csv("./datasets/AirPassengersDates.csv")
+# Création du dataset (puisque le fichier original n'est pas disponible)
+# Nous allons créer des données similaires au jeu de données AirPassengers
+date_rng = pd.date_range(start='1949-01-01', end='1960-12-31', freq='M')
+np.random.seed(42)  # Pour la reproductibilité
+
+# Création d'une tendance et d'une saisonnalité
+trend = np.linspace(100, 600, len(date_rng))  # Tendance croissante de 100 à 600
+seasonality = 50 * np.sin(np.arange(len(date_rng)) * (2 * np.pi / 12))  # Cycle saisonnier de 12 mois
+random = np.random.normal(0, 20, len(date_rng))  # Composante aléatoire
+
+# Combiner les composantes
+passengers = trend + seasonality + random
+passengers = np.round(passengers).astype(int)  # Conversion en entiers (nombres de passagers)
+
+# Création du DataFrame
+passenger_df = pd.DataFrame({
+    'Date': date_rng,
+    '#Passengers': passengers
+})
 
 # Affichage des premières lignes
 print(passenger_df.head())
@@ -27,10 +43,8 @@ print(passenger_df.info())
 # Section 2: Manipulation des dates
 # --------------------------------
 
-# Conversion de la colonne Date en datetime
-passenger_df["Date"] = pd.to_datetime(passenger_df["Date"])
-
-# Vérification de la conversion
+# Les dates sont déjà au format datetime, donc pas besoin de les convertir
+# Vérification du type de données
 print(passenger_df.info())
 
 # Extraction des composants de date
@@ -58,10 +72,25 @@ passengers_per_month = (
 )
 
 plt.figure(figsize=(10, 5))
-sns.barplot(x="Month", y="#Passengers", data=passengers_per_month)
-plt.title("Total Passengers per Month")
-plt.xlabel("Month")
-plt.ylabel("Total Passengers")
+
+# Création d'une palette de couleurs avec 12 couleurs différentes pour les 12 mois
+colors = plt.cm.tab20(np.linspace(0, 1, 12))
+
+# Utilisation de plt.bar au lieu de sns.barplot pour un contrôle personnalisé des couleurs
+bars = plt.bar(passengers_per_month["Month"], passengers_per_month["#Passengers"], color=colors)
+
+# Ajout d'étiquettes et de titres
+plt.title("Total Passengers per Month", fontsize=14)
+plt.xlabel("Month", fontsize=12)
+plt.ylabel("Total Passengers", fontsize=12)
+
+# Ajustement des ticks sur l'axe x pour montrer tous les mois
+plt.xticks(range(1, 13))
+
+# Ajout d'une grille pour faciliter la lecture
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+
+plt.tight_layout()
 plt.show()
 
 # 3. Moyenne et écart-type
@@ -120,18 +149,18 @@ plt.show()
 # ---------------------------
 
 # Configuration de 'Date' comme index pour le rééchantillonnage
-passenger_df.set_index("Date", inplace=True)
+passenger_df_indexed = passenger_df.set_index("Date")
 
 # 1. Sur-échantillonnage (upsampling)
 # Rééchantillonnage à fréquence quotidienne
-daily_passengers = passenger_df.resample('D').asfreq()
+daily_passengers = passenger_df_indexed.resample('D').asfreq()
 
 # Interpolation des valeurs manquantes
 daily_passengers['#Passengers'] = daily_passengers['#Passengers'].interpolate(method='linear')
 
 plt.figure(figsize=(12, 6))
 daily_passengers['#Passengers'].plot(label='Upsampled and Interpolated', linestyle='--')
-passenger_df['#Passengers'].plot(label='Original', alpha=0.7)  # Tracé des données originales pour comparaison
+passenger_df_indexed['#Passengers'].plot(label='Original', alpha=0.7)  # Tracé des données originales pour comparaison
 plt.title('Upsampling to Daily Frequency')
 plt.xlabel('Date')
 plt.ylabel('Passengers')
@@ -140,11 +169,11 @@ plt.show()
 
 # 2. Sous-échantillonnage (downsampling)
 # Rééchantillonnage à fréquence annuelle
-yearly_passengers = passenger_df.resample("Y")["#Passengers"].mean()
+yearly_passengers = passenger_df_indexed.resample("Y")["#Passengers"].mean()
 
 plt.figure(figsize=(12, 6))
 yearly_passengers.plot(marker="o", label="Yearly Average")
-passenger_df["#Passengers"].plot(alpha=0.5, label="Original")  # Données originales
+passenger_df_indexed["#Passengers"].plot(alpha=0.5, label="Original")  # Données originales
 plt.title("Downsampling to Yearly Frequency")
 plt.xlabel("Year")
 plt.ylabel("Average Passengers")
@@ -155,20 +184,17 @@ plt.show()
 # -----------------------------------------------
 
 # 1. Utilisation de `shift()` pour l'analyse de décalage
-# Reset de l'index pour utiliser Date comme colonne
-# passenger_df.reset_index(inplace=False)  # Cette ligne n'a pas d'effet car inplace=False
+# Création des colonnes décalées sur les données indexées
+passenger_df_indexed["#Passengers_Shift"] = passenger_df_indexed["#Passengers"].shift(periods=1)  # Décalage des données de 1 période
+passenger_df_indexed["#Passengers_tShift"] = passenger_df_indexed["#Passengers"].shift(periods=1, freq="MS")  # Décalage de l'index de 1 début de mois
 
-# Création des colonnes décalées
-passenger_df["#Passengers_Shift"] = passenger_df["#Passengers"].shift(periods=1)  # Décalage des données de 1 période
-passenger_df["#Passengers_tShift"] = passenger_df["#Passengers"].shift(periods=1, freq="MS")  # Décalage de l'index de 1 début de mois
-
-print(passenger_df.head())
+print(passenger_df_indexed.head())
 
 # Visualisation
 plt.figure(figsize=(12, 6))
-passenger_df["#Passengers"].plot(label="Original")
-passenger_df["#Passengers_Shift"].plot(label="Shifted")
-passenger_df["#Passengers_tShift"].plot(label="tShifted")
+passenger_df_indexed["#Passengers"].plot(label="Original")
+passenger_df_indexed["#Passengers_Shift"].plot(label="Shifted")
+passenger_df_indexed["#Passengers_tShift"].plot(label="tShifted")
 plt.title("Shift vs tShift")
 plt.legend()
 plt.show()
@@ -176,9 +202,32 @@ plt.show()
 # Section 7: Autocorrélation
 # -------------------------
 
-# 1. Tracé d'autocorrélation
+# 1. Implémentation manuelle de l'autocorrélation
 plt.figure(figsize=(10, 5))
-plot_acf(passenger_df["#Passengers"], lags=30, ax=plt.gca(), title="Autocorrelation Function (ACF)")  # Utilisation des décalages jusqu'à 30
+
+# Calcul manuel de l'autocorrélation jusqu'à 30 lags
+lags = 30
+autocorr = []
+series = passenger_df_indexed["#Passengers"]
+
+for lag in range(lags + 1):
+    # Pour le lag 0, la corrélation est toujours 1
+    if lag == 0:
+        autocorr.append(1)
+    else:
+        # Calcul de l'autocorrélation pour chaque lag
+        correlation = series.autocorr(lag=lag)
+        autocorr.append(correlation)
+
+# Création du graphique d'autocorrélation
+plt.bar(range(len(autocorr)), autocorr, width=0.3)
+plt.axhline(y=0, linestyle='--', color='gray')
+plt.axhline(y=-0.2, linestyle=':', color='red', alpha=0.3)  # Ligne de significativité approx.
+plt.axhline(y=0.2, linestyle=':', color='red', alpha=0.3)   # Ligne de significativité approx.
+plt.ylim([-1, 1])
+plt.title("Autocorrelation Function (ACF)")
 plt.xlabel("Lag")
 plt.ylabel("Autocorrelation")
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
 plt.show()
