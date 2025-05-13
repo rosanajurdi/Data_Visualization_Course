@@ -1,0 +1,227 @@
+Retrieving notices: ...working... done
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: c:\Users\sbria\MiniConda3
+
+  added / updated specs:
+    - vegafusion
+    - vegafusion-python-embed
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    arro3-core-0.4.6           |  py310h6cb82c9_0         1.6 MB  conda-forge
+    ca-certificates-2025.4.26  |       h4c7d964_0         149 KB  conda-forge
+    certifi-2025.4.26          |     pyhd8ed1ab_0         154 KB  conda-forge
+    narwhals-1.39.0            |     pyhe01879c_0         212 KB  conda-forge
+    vegafusion-2.0.2           |  py310he2ddb0e_0        15.9 MB  conda-forge
+    vegafusion-python-embed-1.6.9|  py310h5bfac05_2        13.9 MB  conda-forge
+    ------------------------------------------------------------
+                                           Total:        31.9 MB
+
+The following NEW packages will be INSTALLED:
+
+  arro3-core         conda-forge/win-64::arro3-core-0.4.6-py310h6cb82c9_0 
+  narwhals           conda-forge/noarch::narwhals-1.39.0-pyhe01879c_0 
+  vegafusion         conda-forge/win-64::vegafusion-2.0.2-py310he2ddb0e_0 
+  vegafusion-python~ conda-forge/win-64::vegafusion-python-embed-1.6.9-py310h5bfac05_2 
+
+The following packages will be UPDATED:
+
+  ca-certificates    conda-forge/win-64::ca-certificates-2~ --> conda-forge/noarch::ca-certificates-2025.4.26-h4c7d964_0 
+  certifi                            2025.1.31-pyhd8ed1ab_0 --> 2025.4.26-pyhd8ed1ab_0 
+
+
+
+Downloading and Extracting Packages
+narwhals-1.39.0      | 212 KB    |            |   0% 
+vegafusion-python-em | 13.9 MB   |            |   0% [A
+
+vegafusion-2.0.2     | 15.9 MB   |            |   0% [A[A
+
+
+ca-certificates-2025 | 149 KB    |            |   0% [A[A[A
+
+
+
+arro3-core-0.4.6     | 1.6 MB    |            |   0% [A[A[A[A
+
+
+
+
+certifi-2025.4.26    | 154 KB    |            |   0% [A[A[A[A[A
+
+
+ca-certificates-2025 | 149 KB    | #          |  11% [A[A[Anarwhals-1.39.0      | 212 KB    | 7          |   8% 
+
+
+ca-certificates-2025 | 149 KB    | ########## | 100% [A[A[A
+
+
+ca-certificates-2025 | 149 KB    | ########## | 100% [A[A[A
+
+
+
+
+certifi-2025.4.26    | 154 KB    | #          |  10% [A[A[A[A[A
+
+
+
+
+certifi-2025.4.26    | 154 KB    | ########## | 100% [A[A[A[A[A
+
+
+
+
+certifi-2025.4.26    | 154 KB    | ########## | 100% [A[A[A[A[Anarwhals-1.39.0      | 212 KB    | ########## | 100% narwhals-1.39.0      | 212 KB    | ########## | 100% 
+
+
+
+arro3-core-0.4.6     | 1.6 MB    |            |   1% [A[A[A[A
+
+
+
+arro3-core-0.4.6     | 1.6 MB    | #5         |  16% [A[A[A[A
+vegafusion-python-em | 13.9 MB   |            |   0% [A
+
+
+
+arro3-core-0.4.6     | 1.6 MB    | ####4      |  44% [A[A[A[A
+
+vegafusion-2.0.2     | 15.9 MB   |            |   0% [A[A
+vegafusion-python-em | 13.9 MB   | 1          |   2% [A
+
+
+
+arro3-core-0.4.6     | 1.6 MB    | #######3   |  73% [A[A[A[A
+
+vegafusion-2.0.2     | 15.9 MB   | 1          |   1% [A[A
+vegafusion-python-em | 13.9 MB   | 4          |   4% [A
+
+vegafusion-2.0.2     | 15.9 MB   | 4          |   4% [A[A
+
+
+
+arro3-core-0.4.6     | 1.6 MB    | #########9 | 100% [A[A[A[A
+vegafusion-python-em | 13.9 MB   | 7          |   8% [A
+
+vegafusion-2.0.2     | 15.9 MB   | 6          |   7% [A[A
+
+
+
+arro3-core-0.4.6     | 1.6 MB    | ########## | 100% [A[A[A[A
+vegafusion-python-em | 13.9 MB   | #1         |  11% [A
+
+vegafusion-2.0.2     | 15.9 MB   | 8          |   9% [A[A
+vegafusion-python-em | 13.9 MB   | #3         |  14% [A
+
+vegafusion-2.0.2     | 15.9 MB   | #2         |  12% [A[A
+vegafusion-python-em | 13.9 MB   | #7         |  17% [A
+vegafusion-python-em | 13.9 MB   | ##         |  20% [A
+
+vegafusion-2.0.2     | 15.9 MB   | #4         |  15% [A[A
+vegafusion-python-em | 13.9 MB   | ##3        |  24% [A
+
+vegafusion-2.0.2     | 15.9 MB   | #7         |  18% [A[A
+vegafusion-python-em | 13.9 MB   | ##6        |  27% [A
+
+vegafusion-2.0.2     | 15.9 MB   | ##         |  21% [A[A
+vegafusion-python-em | 13.9 MB   | ##9        |  30% [A
+
+vegafusion-2.0.2     | 15.9 MB   | ##3        |  23% [A[A
+vegafusion-python-em | 13.9 MB   | ###3       |  34% [A
+
+vegafusion-2.0.2     | 15.9 MB   | ##6        |  27% [A[A
+
+vegafusion-2.0.2     | 15.9 MB   | ##9        |  30% [A[A
+vegafusion-python-em | 13.9 MB   | ###7       |  37% [A
+
+vegafusion-2.0.2     | 15.9 MB   | ###2       |  33% [A[A
+vegafusion-python-em | 13.9 MB   | ####       |  41% [A
+
+vegafusion-2.0.2     | 15.9 MB   | ###5       |  35% [A[A
+
+vegafusion-2.0.2     | 15.9 MB   | ###8       |  39% [A[A
+vegafusion-python-em | 13.9 MB   | ####3      |  44% [A
+
+vegafusion-2.0.2     | 15.9 MB   | ####1      |  41% [A[A
+vegafusion-python-em | 13.9 MB   | ####7      |  47% [A
+
+vegafusion-2.0.2     | 15.9 MB   | ####4      |  45% [A[A
+vegafusion-python-em | 13.9 MB   | #####1     |  51% [A
+
+vegafusion-2.0.2     | 15.9 MB   | ####7      |  48% [A[A
+vegafusion-python-em | 13.9 MB   | #####4     |  55% [A
+
+vegafusion-2.0.2     | 15.9 MB   | #####      |  51% [A[A
+vegafusion-python-em | 13.9 MB   | #####8     |  58% [A
+
+vegafusion-2.0.2     | 15.9 MB   | #####3     |  54% [A[A
+vegafusion-python-em | 13.9 MB   | ######1    |  62% [A
+
+vegafusion-2.0.2     | 15.9 MB   | #####6     |  57% [A[A
+vegafusion-python-em | 13.9 MB   | ######4    |  65% [A
+
+vegafusion-2.0.2     | 15.9 MB   | #####9     |  60% [A[A
+vegafusion-python-em | 13.9 MB   | ######8    |  68% [A
+
+vegafusion-2.0.2     | 15.9 MB   | ######2    |  63% [A[A
+vegafusion-python-em | 13.9 MB   | #######1   |  72% [A
+
+vegafusion-2.0.2     | 15.9 MB   | ######5    |  66% [A[A
+vegafusion-python-em | 13.9 MB   | #######4   |  75% [A
+
+vegafusion-2.0.2     | 15.9 MB   | ######8    |  68% [A[A
+vegafusion-python-em | 13.9 MB   | #######7   |  78% [A
+
+vegafusion-2.0.2     | 15.9 MB   | #######1   |  71% [A[A
+vegafusion-python-em | 13.9 MB   | ########1  |  81% [A
+
+vegafusion-2.0.2     | 15.9 MB   | #######3   |  74% [A[A
+vegafusion-python-em | 13.9 MB   | ########4  |  84% [A
+
+vegafusion-2.0.2     | 15.9 MB   | #######6   |  77% [A[A
+vegafusion-python-em | 13.9 MB   | ########8  |  88% [A
+
+vegafusion-2.0.2     | 15.9 MB   | ########   |  80% [A[A
+vegafusion-python-em | 13.9 MB   | #########1 |  92% [A
+
+vegafusion-2.0.2     | 15.9 MB   | ########3  |  83% [A[A
+vegafusion-python-em | 13.9 MB   | #########5 |  95% [A
+
+vegafusion-2.0.2     | 15.9 MB   | ########6  |  86% [A[A
+vegafusion-python-em | 13.9 MB   | #########8 |  98% [A
+
+vegafusion-2.0.2     | 15.9 MB   | ########9  |  89% [A[A
+
+vegafusion-2.0.2     | 15.9 MB   | #########2 |  92% [A[A
+
+vegafusion-2.0.2     | 15.9 MB   | #########5 |  95% [A[A
+
+vegafusion-2.0.2     | 15.9 MB   | #########8 |  99% [A[A
+vegafusion-python-em | 13.9 MB   | ########## | 100% [A
+
+vegafusion-2.0.2     | 15.9 MB   | ########## | 100% [A[A                                                     
+                                                     [A
+
+                                                     [A[A
+
+
+                                                     [A[A[A
+
+
+
+                                                     [A[A[A[A
+
+
+
+
+                                                     [A[A[A[A[A
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
