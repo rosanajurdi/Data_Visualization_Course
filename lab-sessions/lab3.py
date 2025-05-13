@@ -165,7 +165,7 @@ plt.figure(figsize=(14, 8))
 df_height = df_top5.dropna(subset=['Height'])
 if not df_height.empty:
     sns.boxplot(data=df_height, x='Sport', y='Height', hue='Sex', palette='Set2')
-    plt.title('Taille des médaillés par sport et par sexe (2016)', fontsize=15)
+    plt.title('Taille des médaiillés par sport et par sexe (2016)', fontsize=15)
     plt.xlabel('Sport', fontsize=12)
     plt.ylabel('Taille (cm)', fontsize=12)
     plt.legend(title='Sexe')
