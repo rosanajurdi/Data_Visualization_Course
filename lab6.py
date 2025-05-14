@@ -1,15 +1,15 @@
 import pandas as pd
 import numpy as np
-from bokeh.plotting import figure, show, output_notebook  # Changé ici
+from bokeh.plotting import figure, show, output_notebook
 from bokeh.layouts import column
 from bokeh.models import ColumnDataSource, HoverTool
 from statsmodels.graphics.tsaplots import plot_acf
 import matplotlib.pyplot as plt
 
-# Activer l'affichage dans le notebook
-output_notebook()  # Ajouté ici
+# Activate notebook output
+output_notebook()
 
-# Chargement du fichier
+# Load data
 df = pd.read_csv("C:/Users/victo/Documents/GitHub/Data_Visualization_Course/Data_Visualization_Course/lab-sessions/datasets/AirPassengersDates.csv")
 df.rename(columns={'#Passengers': 'Passengers'}, inplace=True)
 df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
@@ -17,7 +17,7 @@ df = df.dropna(subset=['Date'])
 df.set_index('Date', inplace=True)
 
 # ----------------------
-# 1. Bar plot annuel
+# 1. Annual bar plot
 # ----------------------
 df_yearly = df.resample('YE').sum()
 df_yearly.index = df_yearly.index.year.astype(str)
@@ -32,7 +32,7 @@ bar_plot.vbar(x='Date', top='Passengers', width=0.8, source=yearly_source, color
 bar_plot.add_tools(HoverTool(tooltips=[("Year", "@Date"), ("Passengers", "@Passengers")]))
 
 # ----------------------
-# 2. Moyenne + écart-type + outliers
+# 2. Mean + std dev + outliers
 # ----------------------
 mean = df['Passengers'].mean()
 std = df['Passengers'].std()
@@ -51,7 +51,8 @@ outlier_source = ColumnDataSource(data={
     'date': outliers.index,
     'passengers': outliers['Passengers']
 })
-mean_plot.circle('date', 'passengers', size=8, source=outlier_source, color='red', legend_label="Outliers")
+# Updated from circle() to scatter()
+mean_plot.scatter('date', 'passengers', size=8, source=outlier_source, color='red', legend_label="Outliers")
 
 # ----------------------
 # 3. Resampling (down & up)
@@ -75,13 +76,12 @@ plt.title("Autocorrelation of Air Passengers")
 plt.tight_layout()
 
 # ----------------------
-# 5. Affichage
+# 5. Display everything
 # ----------------------
-# Suppression de output_file() et modification de show()
+# Show Bokeh plots
 show(column(bar_plot, mean_plot, resample_plot))
 
-# Afficher le plot matplotlib dans le notebook
-plt.show()  # Ajouté pour afficher l'autocorrélation dans le notebook
+# Show matplotlib plot
+plt.show()
 
-print("📊 Visualisations affichées dans le notebook")
-print("📊 Autocorrélation affichée ci-dessus")
+print("📊 All visualizations displayed in notebook")
