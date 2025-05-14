@@ -7,7 +7,7 @@ from statsmodels.graphics.tsaplots import plot_acf
 import matplotlib.pyplot as plt
 
 # Chargement du fichier
-df = pd.read_csv("C:\Users\victo\Documents\GitHub\Data_Visualization_Course\Data_Visualization_Course\lab-sessions\datasets\AirPassengersDates.csv")
+df = pd.read_csv("C:/Users/victo/Documents/GitHub/Data_Visualization_Course/Data_Visualization_Course/lab-sessions/datasets/AirPassengersDates.csv")
 df.rename(columns={'#Passengers': 'Passengers'}, inplace=True)
 df['Date'] = pd.to_datetime(df['Date'], errors='coerce')  # Gère les dates mal formatées
 df = df.dropna(subset=['Date'])  # Supprime les lignes invalides si des dates ne sont pas converties
