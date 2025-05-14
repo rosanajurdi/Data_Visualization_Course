@@ -1,16 +1,19 @@
 import pandas as pd
 import numpy as np
-from bokeh.plotting import figure, show, output_file
+from bokeh.plotting import figure, show, output_notebook  # Changé ici
 from bokeh.layouts import column
 from bokeh.models import ColumnDataSource, HoverTool
 from statsmodels.graphics.tsaplots import plot_acf
 import matplotlib.pyplot as plt
 
+# Activer l'affichage dans le notebook
+output_notebook()  # Ajouté ici
+
 # Chargement du fichier
 df = pd.read_csv("C:/Users/victo/Documents/GitHub/Data_Visualization_Course/Data_Visualization_Course/lab-sessions/datasets/AirPassengersDates.csv")
 df.rename(columns={'#Passengers': 'Passengers'}, inplace=True)
-df['Date'] = pd.to_datetime(df['Date'], errors='coerce')  # Gère les dates mal formatées
-df = df.dropna(subset=['Date'])  # Supprime les lignes invalides si des dates ne sont pas converties
+df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
+df = df.dropna(subset=['Date'])
 df.set_index('Date', inplace=True)
 
 # ----------------------
@@ -20,10 +23,10 @@ df_yearly = df.resample('YE').sum()
 df_yearly.index = df_yearly.index.year.astype(str)
 yearly_source = ColumnDataSource(df_yearly.reset_index())
 
-bar_plot = figure(x_range=yearly_source.data['Date'], 
-                  title="Total Passengers per Year",
-                  x_axis_label='Year', y_axis_label='Total Passengers',
-                  height=300, width=800, tools="pan,box_zoom,reset,save")
+bar_plot = figure(x_range=yearly_source.data['Date'],
+                 title="Total Passengers per Year",
+                 x_axis_label='Year', y_axis_label='Total Passengers',
+                 height=300, width=800, tools="pan,box_zoom,reset,save")
 
 bar_plot.vbar(x='Date', top='Passengers', width=0.8, source=yearly_source, color="orange")
 bar_plot.add_tools(HoverTool(tooltips=[("Year", "@Date"), ("Passengers", "@Passengers")]))
@@ -35,8 +38,8 @@ mean = df['Passengers'].mean()
 std = df['Passengers'].std()
 
 mean_plot = figure(title="Passengers with Mean and ±1 Std Dev",
-                   x_axis_type='datetime', x_axis_label='Date', y_axis_label='Passengers',
-                   height=300, width=800, tools="pan,box_zoom,reset,save")
+                 x_axis_type='datetime', x_axis_label='Date', y_axis_label='Passengers',
+                 height=300, width=800, tools="pan,box_zoom,reset,save")
 
 mean_plot.line(df.index, df['Passengers'], line_width=2, color="green", legend_label="Passengers")
 mean_plot.line(df.index, [mean]*len(df), line_dash='dashed', color='black', legend_label="Mean")
@@ -57,7 +60,7 @@ df_downsampled = df.resample('YE').mean()
 df_upsampled = df.resample('W').interpolate('linear')
 
 resample_plot = figure(title="Resampling: Yearly Mean & Weekly Interpolation",
-                       x_axis_type='datetime', height=300, width=800)
+                      x_axis_type='datetime', height=300, width=800)
 
 resample_plot.line(df.index, df['Passengers'], color="lightgray", legend_label="Original")
 resample_plot.line(df_downsampled.index, df_downsampled['Passengers'], color="blue", line_width=2, legend_label="Yearly Mean")
@@ -70,14 +73,15 @@ fig, ax = plt.subplots(figsize=(10, 4))
 plot_acf(df['Passengers'], ax=ax, lags=40)
 plt.title("Autocorrelation of Air Passengers")
 plt.tight_layout()
-plt.savefig("autocorrelation.png")
-plt.close()
 
 # ----------------------
 # 5. Affichage
 # ----------------------
-output_file("bokeh_air_passengers_analysis.html")
+# Suppression de output_file() et modification de show()
 show(column(bar_plot, mean_plot, resample_plot))
 
-print("✅ Fichier interactif enregistré : 'bokeh_air_passengers_analysis.html'")
-print("📊 Autocorrélation enregistrée sous : 'autocorrelation.png'")
+# Afficher le plot matplotlib dans le notebook
+plt.show()  # Ajouté pour afficher l'autocorrélation dans le notebook
+
+print("📊 Visualisations affichées dans le notebook")
+print("📊 Autocorrélation affichée ci-dessus")
