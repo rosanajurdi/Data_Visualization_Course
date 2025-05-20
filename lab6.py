@@ -28,7 +28,7 @@ df_yearly.index = df_yearly.index.year.astype(str)
 yearly_source = ColumnDataSource(df_yearly.reset_index())
 
 bar_plot = figure(x_range=yearly_source.data['Date'],
-                 title="Total Passengers per Year (Bokeh)",
+                 title="Total Passengers per Year",
                  x_axis_label='Year', y_axis_label='Total Passengers',
                  height=300, width=800, tools="pan,box_zoom,reset,save")
 
@@ -41,7 +41,7 @@ bar_plot.add_tools(HoverTool(tooltips=[("Year", "@Date"), ("Passengers", "@Passe
 mean = df['Passengers'].mean()
 std = df['Passengers'].std()
 
-mean_plot = figure(title="Passengers with Mean and ±1 Std Dev (Bokeh)",
+mean_plot = figure(title="Passengers with Mean and ±1 Std Dev",
                  x_axis_type='datetime', x_axis_label='Date', y_axis_label='Passengers',
                  height=300, width=800, tools="pan,box_zoom,reset,save")
 
@@ -75,7 +75,7 @@ resample_plot.line(df_upsampled.index, df_upsampled['Passengers'], color="green"
 # ----------------------
 fig_acf, ax_acf = plt.subplots(figsize=(10, 4))
 plot_acf(df['Passengers'], ax=ax_acf, lags=40)
-ax_acf.set_title("Autocorrelation of Air Passengers (Original)")
+ax_acf.set_title("Autocorrelation of Air Passengers")
 plt.tight_layout()
 
 #############################################
@@ -87,7 +87,7 @@ plt.tight_layout()
 # ----------------------
 plt.figure(figsize=(10, 4))
 df_yearly['Passengers'].plot(kind='bar', color='blue')
-plt.title('Total Passengers per Year (Pandas/Matplotlib)')
+plt.title('Total Passengers per Year')
 plt.xlabel('Year')
 plt.ylabel('Total Passengers')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
@@ -95,7 +95,7 @@ plt.xticks(rotation=45)
 plt.tight_layout()
 
 # ----------------------
-# 2. Mean + std dev + outliers - Pandas/Matplotlib
+# 2. Mean + std dev + outliers
 # ----------------------
 plt.figure(figsize=(10, 4))
 df['Passengers'].plot(label='Passengers', color='green')
@@ -103,7 +103,7 @@ plt.axhline(mean, linestyle='--', color='black', label='Mean')
 plt.axhline(mean + std, linestyle=':', color='gray', label='+1 Std Dev')
 plt.axhline(mean - std, linestyle=':', color='gray', label='-1 Std Dev')
 plt.scatter(outliers.index, outliers['Passengers'], color='red', s=30, label='Outliers')
-plt.title('Passengers with Mean and ±1 Std Dev (Pandas/Matplotlib)')
+plt.title('Passengers with Mean and ±1 Std Dev ')
 plt.xlabel('Date')
 plt.ylabel('Passengers')
 plt.legend()
@@ -111,13 +111,13 @@ plt.grid(True, alpha=0.3)
 plt.tight_layout()
 
 # ----------------------
-# 3. Resampling (down & up) - Pandas/Matplotlib
+# 3. Resampling (down & up)
 # ----------------------
 plt.figure(figsize=(10, 4))
 df['Passengers'].plot(color='lightgray', alpha=0.5, label='Original')
 df_downsampled['Passengers'].plot(color='blue', linewidth=2, label='Yearly Mean')
 df_upsampled['Passengers'].plot(color='green', linewidth=1, alpha=0.6, label='Weekly Interpolation')
-plt.title('Resampling: Yearly Mean & Weekly Interpolation (Pandas/Matplotlib)')
+plt.title('Resampling: Yearly Mean & Weekly Interpolation')
 plt.xlabel('Date')
 plt.ylabel('Passengers')
 plt.legend()
@@ -125,11 +125,11 @@ plt.grid(True, alpha=0.3)
 plt.tight_layout()
 
 # ----------------------
-# 4. Autocorrelation (Pandas/Matplotlib)
+# 4. Autocorrelation
 # ----------------------
 fig_acf2, ax_acf2 = plt.subplots(figsize=(10, 4))
 pd.plotting.autocorrelation_plot(df['Passengers'], ax=ax_acf2)
-ax_acf2.set_title("Autocorrelation of Air Passengers (Pandas)")
+ax_acf2.set_title("Autocorrelation of Air Passengers")
 plt.tight_layout()
 
 # ----------------------
@@ -141,4 +141,4 @@ show(column(bar_plot, mean_plot, resample_plot))
 # Show all matplotlib plots
 plt.show()
 
-print("📊 All visualizations displayed in notebook (Bokeh and Pandas/Matplotlib)")
+print("📊 All visualizations displayed in notebook")
